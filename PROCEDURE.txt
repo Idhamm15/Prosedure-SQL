@@ -1,0 +1,96 @@
+============================ PROCEDURE ==========================
+
+KALO FUNCTION MENGGUNAKAN RETURN VALUE
+KALO PROCEDURE TANPA RETURN VALUE
+
+
+============================ PROCEDURE INSERT ==========================
+-- STORED PROCEDURE
+-- FUNCTION AND PROCEDURE
+DELIMITER //
+CREATE OR REPLACE PROCEDURE masuk_baru
+(p_nama VARCHAR(35), p_jk CHAR(1), p_alamat VARCHAR(100),
+p_tempat VARCHAR(20), p_tanggal DATE)
+BEGIN
+INSERT INTO daftar_nama
+(nama, jk, alamat, tempat_lahir, tanggal_lahir)
+VALUES(p_nama, p_jk, p_alamat, p_tempat, p_tanggal);
+END;
+//
+
+DELIMITER ;
+CALL masuk_baru('Indra','L','Sigentong','Brebes','2003-04-11');
+
+SELECT * FROM daftar_nama WHERE  nama = 'Indra';
+
+
+PROSEDURE INSERT
+PROSEDURE UPDATE
+
+FORMAT TUGAS
+DESC TABEL;
+
+
+============================ PROCEDURE UPDATE ==========================
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE ubah_data
+(p_nama VARCHAR(35), p_no_hp VARCHAR (13), p_alamat VARCHAR(100),
+p_email VARCHAR(40))
+BEGIN
+UPDATE daftar_nama SET no_hp = p_no_hp, alamat = p_alamat,
+email = p_email WHERE nama = p_nama;
+END
+//
+
+DELIMITER ;
+CALL ubah_data('Indra','09876085','Sigantong Brebes','Indraaa@mail.com');
+
+
+
+
+============================ TUGAS PROCEDURE INSERT ==========================
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE masuk_produk
+(p_nama_produk VARCHAR(25), p_harga INT(11), p_jenis VARCHAR(20), p_stok INT(11))
+BEGIN
+INSERT INTO produk
+(nama_produk, harga, jenis, stok)
+VALUES(p_nama_produk, p_harga, p_jenis, p_stok);
+END;
+//
+
+DELIMITER ;
+CALL masuk_produk('minyak sanco', '16000', 'bahan masak', '100');
+
+SELECT * FROM produk WHERE nama = 'minyak sanco';
+
+
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE ubah_data
+(p_nama VARCHAR(35), p_no_hp VARCHAR (13), p_alamat VARCHAR(100),
+p_email VARCHAR(40))
+BEGIN
+UPDATE daftar_nama SET no_hp = p_no_hp, alamat = p_alamat,
+email = p_email WHERE nama = p_nama;
+END
+//
+
+DELIMITER ;
+CALL ubah_data('Indra','09876085','Sigantong Brebes','Indraaa@mail.com');
+
+============================ TUGAS PROCEDURE UPDATE ==========================
+
+DELIMITER //
+CREATE OR REPLACE PROCEDURE ubah_produk
+(p_id_produk CHAR(6), p_harga INT(11), p_jenis VARCHAR(20), p_stok INT(11))
+BEGIN
+UPDATE produk SET harga = p_harga, jenis = p_jenis,
+stok = p_stok WHERE id_produk = p_id_produk;
+END
+//
+
+DELIMITER ;
+CALL ubah_produk('202367','17000','bahan masak dapur','50');
